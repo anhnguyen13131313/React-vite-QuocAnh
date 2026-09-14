@@ -3,9 +3,15 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0);
 
+  // function myFunction() {
+  //   console.log("my function");
+  // }
+  let myFunction = () => {
+    console.log("my function");
+  };
   return (
     <>
       <div>
@@ -30,6 +36,6 @@ function App() {
       </p>
     </>
   );
-}
+};
 
 export default App;

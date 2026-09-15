@@ -1,11 +1,24 @@
 const TodoNew = (props) => {
   const { addNewTodo } = props;
 
-//   addNewTodo("eric");
+  //   addNewTodo("eric");
+  const handleClick = () => {
+    alert("click me");
+  };
+
+  const handleOnChange = (name) => {
+    console.log("handle on change", name);
+  };
+
   return (
     <div className="todo-new">
-      <input type="text" />
-      <button>Add</button>
+      <input
+        type="text"
+        onChange={(even) => {
+          handleOnChange(even.target.value);
+        }}
+      />
+      <button onClick={handleClick}>Add</button>
     </div>
   );
 };

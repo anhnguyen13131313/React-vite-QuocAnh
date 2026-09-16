@@ -2,6 +2,8 @@ import "./Components/todo/todo.css";
 import TodoData from "./Components/todo/TodoData";
 import TodoNew from "./Components/todo/TodoNew";
 import reactLogo from "./assets/react.svg";
+import Header from "./Components/layout/header";
+import Footer from "./Components/layout/footer";
 import { useState } from "react";
 const App = () => {
   const [todoList, setTodoList] = useState([
@@ -26,17 +28,21 @@ const App = () => {
     setTodoList(updatedTodoList);
   };
   return (
-    <div className="todo-container">
-      <div className="todo-title">Todo List</div>
-      <TodoNew addNewTodo={addNewTodo} />
-      {todoList.length > 0 ? (
-        <TodoData todoList={todoList} deleteTodo={deleteTodo} />
-      ) : (
-        <div className="todo-image">
-          <img src={reactLogo} />
-        </div>
-      )}
-    </div>
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title">Todo List</div>
+        <TodoNew addNewTodo={addNewTodo} />
+        {todoList.length > 0 ? (
+          <TodoData todoList={todoList} deleteTodo={deleteTodo} />
+        ) : (
+          <div className="todo-image">
+            <img src={reactLogo} />
+          </div>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };
 

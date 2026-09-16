@@ -70,3 +70,8 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+}

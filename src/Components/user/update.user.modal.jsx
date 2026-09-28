@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { Input, notification, Modal } from "antd";
-import { createUserAPI, updateUserAPI } from "../../services/api.service";
+import { updateUserAPI } from "../../services/api.service";
 
 const UpdateUserModal = (props) => {
   const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } =
-    props;
+  const {
+    isModalUpdateOpen,
+    setIsModalUpdateOpen,
+    dataUpdate,
+    setDataUpdate,
+    loadUser,
+  } = props;
 
   useEffect(() => {
     console.log(">>> check data Update props", dataUpdate);
@@ -42,7 +47,7 @@ const UpdateUserModal = (props) => {
     setId("");
     setDataUpdate(null);
   };
-` `
+  ` `;
   return (
     <Modal
       title="Update a User"

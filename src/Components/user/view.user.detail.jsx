@@ -7,6 +7,7 @@ const ViewUserDetail = (props) => {
       title="Chi tiết User"
       onClose={() => {
         setDataDetail(null);
+
         setIsDetailOpen(false);
       }}
       open={isDetailOpen}

@@ -110,7 +110,6 @@ const UserTable = (props) => {
         setPageSize(+pagination.pageSize);
       }
     }
-    console.log(">>>> check", { pagination, filters, sorter, extra });
   };
   return (
     <>

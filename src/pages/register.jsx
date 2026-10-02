@@ -6,8 +6,6 @@ const RegisterPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const onFinish = async (values) => {
-    console.log(">>> check values", values);
-
     const res = await registerUserAPI(
       values.fullName,
       values.email,

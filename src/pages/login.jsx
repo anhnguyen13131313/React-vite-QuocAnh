@@ -65,7 +65,11 @@ const LoginPage = () => {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password />
+              <Input.Password
+                onKeyDown={(even) => {
+                  if (even.key === "Enter") form.submit();
+                }}
+              />
             </Form.Item>
             <Form.Item>
               <div

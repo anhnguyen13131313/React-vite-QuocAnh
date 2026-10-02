@@ -33,7 +33,7 @@ const RegisterPage = () => {
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      style={{ margin: "10px" }}
+      style={{ margin: "30px" }}
       // onFinishFailed={onFinishFailed}
     >
       <h3 style={{ textAlign: "center" }}>Đăng ký tài khoản </h3>

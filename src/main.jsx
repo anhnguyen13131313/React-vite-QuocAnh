@@ -9,6 +9,7 @@ import "./styles/global.css";
 import TodoApp from "./Components/todo/TodoApp.jsx";
 import ErrorPage from "./pages/error.jsx";
 import { AuthWrapper } from "./Components/context/auth.context.jsx";
+import PrivateRoute from "./pages/private.route.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BookPage />,
+        element: (
+          <PrivateRoute>
+            <BookPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -43,6 +48,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <AuthWrapper>
     <RouterProvider router={router} />
-    </AuthWrapper>
+  </AuthWrapper>,
   // </React.StrictMode>,
 );

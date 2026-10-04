@@ -7,7 +7,7 @@ export default function ErrorPage() {
   return (
     <Result
       style={{ scale: "1.25", marginTop: "200px" }}
-      status="403"
+      status="404"
       title="Oops"
       subTitle={error.statusText || error.message}
       extra={

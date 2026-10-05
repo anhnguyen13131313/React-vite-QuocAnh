@@ -1,5 +1,12 @@
+import { useState } from "react";
+import BookTable from "../Components/book/book.table";
+
 const BookPage = () => {
-  return <div>Book page</div>;
+  return (
+    <div style={{ padding: "20px" }}>
+      <BookTable />
+    </div>
+  );
 };
 
 export default BookPage;

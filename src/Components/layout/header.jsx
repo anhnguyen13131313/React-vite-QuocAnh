@@ -11,7 +11,6 @@ import {
 import { Children, useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { icons } from "antd/es/image/PreviewGroup";
-import { logoutAPI } from "../../services/api.service";
 const Header = () => {
   const [current, setCurrent] = useState("");
   const { user, setUser } = useContext(AuthContext);
@@ -20,24 +19,20 @@ const Header = () => {
     setCurrent(e.key);
   };
 
-  const handleLogout = async () => {
-    const res = await logoutAPI();
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
 
-    if (res.data) {
-      //clear data
-      localStorage.removeItem("access_token");
-      setUser({
-        email: "",
-        phone: "",
-        fullName: "",
-        role: "",
-        avatar: "",
-        id: "",
-      });
-      message.success("logout thanh cong");
-      // redirect
-      navigate("/");
-    }
+    setUser({
+      email: "",
+      phone: "",
+      fullName: "",
+      role: "",
+      avatar: "",
+      id: "",
+    });
+
+    message.success("Đăng xuất thành công");
+    navigate("/", { replace: true });
   };
   const items = [
     {

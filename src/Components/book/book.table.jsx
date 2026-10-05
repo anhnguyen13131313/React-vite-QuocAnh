@@ -2,7 +2,9 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { message, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchBookAPI } from "../../services/api.service";
-import  ViewBookDetail  from "./view.book.detail";
+import ViewBookDetail from "./view.book.detail";
+import BookForm from "./book.form";
+import BookFormUncontrol from "./book.form.uncontrol";
 const BookTable = () => {
   const [dataBook, setDataBook] = useState([]);
   const [current, setCurrent] = useState(1);
@@ -84,6 +86,8 @@ const BookTable = () => {
   };
   return (
     <>
+      {/* <BookForm loadBook={loadBook} /> */}
+      <BookFormUncontrol loadBook={loadBook} />
       <Table
         columns={columns}
         dataSource={dataBook}

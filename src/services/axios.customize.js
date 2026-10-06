@@ -1,4 +1,9 @@
 import axios from "axios";
+import NProgress from "nprogress";
+NProgress.configure({
+  showSpinner: false,
+  trickleSpeed: 100,
+});
 // Set config defaults when creating the instance
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -8,6 +13,7 @@ const instance = axios.create({
 // instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 instance.interceptors.request.use(
   function (config) {
+    NProgress.start();
     if (
       typeof window !== "undefined" &&
       window &&
@@ -21,6 +27,7 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
+    NProgress.done();
     // Do something with request error
     return Promise.reject(error);
   },
@@ -29,6 +36,7 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
   function (response) {
+    NProgress.done();
     // Any status code that lies within the range of 2xx causes this function to trigger
     // Do something with response data
     if (response.data && response.data.data) return response.data;

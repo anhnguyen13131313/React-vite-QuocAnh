@@ -5,6 +5,7 @@ import { fetchBookAPI } from "../../services/api.service";
 import ViewBookDetail from "./view.book.detail";
 import BookForm from "./book.form";
 import BookFormUncontrol from "./book.form.uncontrol";
+import UpdateBookControl from "./update.book.control";
 const BookTable = () => {
   const [dataBook, setDataBook] = useState([]);
   const [current, setCurrent] = useState(1);
@@ -14,6 +15,11 @@ const BookTable = () => {
   //xem detail book
   const [dataDetailBook, setDataDetailBook] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  //update book
+
+  const [dataUpdate, setDataUpdate] = useState(null);
+  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   useEffect(() => {
     loadBook();
   }, [current, pageSize]);
@@ -74,7 +80,13 @@ const BookTable = () => {
       key: "action",
       render: (_, record) => (
         <div style={{ display: "flex", gap: "20px" }}>
-          <EditOutlined />
+          <EditOutlined
+            onClick={() => {
+              setDataUpdate(record);
+              setIsUpdateOpen(true);
+            }}
+            style={{ cursor: "pointer", color: "orange" }}
+          />
           <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
         </div>
       ),
@@ -98,6 +110,13 @@ const BookTable = () => {
           total: total,
         }}
         onChange={onChange}
+      />
+      <UpdateBookControl
+        dataUpdate={dataUpdate}
+        setDataUpdate={setDataUpdate}
+        isUpdateOpen={isUpdateOpen}
+        setIsUpdateOpen={setIsUpdateOpen}
+        loadBook={loadBook}
       />
       <ViewBookDetail
         dataDetailBook={dataDetailBook}

@@ -1,11 +1,12 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { message, Table } from "antd";
+import { message, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
-import { fetchBookAPI } from "../../services/api.service";
+import { deleteBookAPI, fetchBookAPI } from "../../services/api.service";
 import ViewBookDetail from "./view.book.detail";
 import BookForm from "./book.form";
 import BookFormUncontrol from "./book.form.uncontrol";
 import UpdateBookControl from "./update.book.control";
+import UpdateBookUncontrol from "./update.book.uncontrol";
 const BookTable = () => {
   const [dataBook, setDataBook] = useState([]);
   const [current, setCurrent] = useState(1);
@@ -87,7 +88,18 @@ const BookTable = () => {
             }}
             style={{ cursor: "pointer", color: "orange" }}
           />
-          <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          <Popconfirm
+            title="Xóa người dùng"
+            description="Bạn có chắc chắn muốn xóa người dùng"
+            onConfirm={() => {
+              handleDeleteUser(record._id);
+            }}
+            okText="Yes"
+            cancelText="No"
+            placement="left"
+          >
+            <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          </Popconfirm>
         </div>
       ),
     },
@@ -95,6 +107,16 @@ const BookTable = () => {
   const onChange = (pagination, filters, sorter, extra) => {
     setCurrent(pagination.current);
     setPageSize(pagination.pageSize);
+  };
+
+  const handleDeleteUser = async (id) => {
+    const res = await deleteBookAPI(id);
+    if (res) {
+      message.success("xóa người dùng thành công");
+      await loadBook();
+    } else {
+      message.error("xóa người dùng không thành công");
+    }
   };
   return (
     <>
@@ -111,7 +133,14 @@ const BookTable = () => {
         }}
         onChange={onChange}
       />
-      <UpdateBookControl
+      {/* <UpdateBookControl
+        dataUpdate={dataUpdate}
+        setDataUpdate={setDataUpdate}
+        isUpdateOpen={isUpdateOpen}
+        setIsUpdateOpen={setIsUpdateOpen}
+        loadBook={loadBook}
+      /> */}
+      <UpdateBookUncontrol
         dataUpdate={dataUpdate}
         setDataUpdate={setDataUpdate}
         isUpdateOpen={isUpdateOpen}
